@@ -22,6 +22,10 @@ An update for $APP_NAME is available.  Please return to $APP_NAME and save your 
 You may click the \"Cancel\" button to delay this update.
 
 Thanks! - IT Department"
+TITLE2="Update Complete"
+DESCRIPTION2="Thank You! 
+
+$APP_NAME has been updated on your computer. You may relaunch it now if you wish."
 BUTTON1="OK"
 BUTTON2="Cancel"
 DEFAULT_BUTTON="2"
@@ -52,12 +56,15 @@ else
         then
             echo "User chose $BUTTON1 and app NOT running so proceed with install"
             "$JAMF_BINARY" policy -event "$POLICY_TRIGGER_NAME"
+            /bin/launchctl asuser "$USER_ID" /usr/bin/sudo -u "$CURRENT_USER" "$JAMF_HELPER" -windowType utility -windowPosition lr -title "$TITLE2" -description "$DESCRIPTION2" -icon "$AEA11_LOGO" -button1 "$BUTTON1" -defaultButton "1"
             exit 0
         else
             echo "User chose $BUTTON1 and app is running so killing app process ID $APP_PROCESS_ID"
             kill -9 "$APP_PROCESS_ID"
             echo "Proceeding with app install"
             "$JAMF_BINARY" policy -event "$POLICY_TRIGGER_NAME"
+            # Add message it's safe to re-open app
+            /bin/launchctl asuser "$USER_ID" /usr/bin/sudo -u "$CURRENT_USER" "$JAMF_HELPER" -windowType utility -windowPosition lr -title "$TITLE2" -description "$DESCRIPTION2" -icon "$AEA11_LOGO" -button1 "$BUTTON1" -defaultButton "1"
             exit 0
         fi
     fi
