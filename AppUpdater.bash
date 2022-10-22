@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Name: AppUpdater.bash
-# Version: 1.0.5
+# Version: 1.0.6
 # Created: 03-24-2022 by Michael Permann
-# Updated: 07-15-2022
+# Updated: 10-21-2022
 # The script is for patching an app with user notification before starting, if the app is running. If the app
 # is not running, it will be silently patched without any notification to the user. Parameter 4 is the name 
 # of the app to patch. Parameter 5 is the name of the app process. Parameter 6 is the policy trigger name 
@@ -28,7 +28,7 @@ Caution: your work could be lost if you don't save it and quit $APP_NAME before 
 You may click the \"Cancel\" button to delay this update.
 
 Any questions or issues please contact techsupport@heartlandaea.org.
-Thanks! - IT Department"
+Thanks!"
 TITLE2="Update Complete"
 DESCRIPTION2="Thank You! 
 
